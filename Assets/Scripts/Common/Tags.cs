@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tags {
 
-    public static string Item = "item";
+    public static readonly string Item = "item";
     public static string Box = "box";
     public static string Player = "Player";
     public static string Enemy = "enemy";

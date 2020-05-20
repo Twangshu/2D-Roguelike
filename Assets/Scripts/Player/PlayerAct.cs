@@ -49,8 +49,8 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
 
     }
 
-    //public void takeDamage(int enemyATK, string enemyName)
-    //{
+    public void takeDamage(int enemyATK, string enemyName)
+    {
     //    if (!canMove)
     //        return;
     //    int damage= enemyATK - PlayInfoManager.Instance.DEF <= 0?1: enemyATK - PlayInfoManager.Instance.DEF;
@@ -68,7 +68,7 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     //        EventCenter.Broadcast(EventDefine.ShowMessage, deadMsg);
     //    }
     //    StartCoroutine("ChangeColor");
-    //}
+    }
     private IEnumerator ChangeColor()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0.5f, 0.5f, 1f);
