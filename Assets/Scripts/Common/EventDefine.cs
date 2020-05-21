@@ -10,4 +10,6 @@
    ShowDeadPanel,
    ShowForgePanel,
    CloseForgePanel,
+    ShowKnapsackPanel,
+    HideKnapsackPanel,
 }

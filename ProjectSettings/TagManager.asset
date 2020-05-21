@@ -7,6 +7,11 @@ TagManager:
   - floor
   - outwall
   - enemy
+  - slot
+  - equipmentSlot
+  - EquipmentSlot
+  - ShopSlot
+  - KnapsackSlot
   layers:
   - Default
   - TransparentFX

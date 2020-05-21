@@ -8,9 +8,9 @@ public class Tags {
     public static string Box = "box";
     public static string Player = "Player";
     public static string Enemy = "enemy";
-    public static string Slot = "Slot";
+    public static string KnapsackSlot = "KnapsackSlot";
     public static string ShopSlot = "ShopSlot";
-    public static string equipmentSlot = "equipmentSlot";
+    public static string EquipmentSlot = "EquipmentSlot";
     public static string ShortCutSlot = "ShortCutSlot";
     public static string outWall = "outwall";
 }
