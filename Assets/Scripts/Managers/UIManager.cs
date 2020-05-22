@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private bool isPickingItem = false;
     public ItemUI PickedItem { get => pickedItem; set => pickedItem = value; }
     public bool IsPickingItem { get => isPickingItem; set => isPickingItem = value; }
-    public static UIManager Instance { get => _instance; set => _instance = value; }
+    public static UIManager Instance { get => _instance; }
     public Camera UICamera { get => uICamera; set => uICamera = value; }
     [HideInInspector]
     public bool isToolTipShow = false;
@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
+        _instance = this;
         canvas = FindObjectOfType<Canvas>();
         toolTip = FindObjectOfType<ToolTip>();
         UICamera = transform.Find("UICamera").GetComponent<Camera>();

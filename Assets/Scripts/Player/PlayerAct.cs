@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Text;
+using System.Runtime.Remoting.Messaging;
 
 public class PlayerAct : MonoBehaviour  //攻击，行走
 {
@@ -20,12 +21,12 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     private SpriteRenderer sprite;
 
     //攻击CD
+    [SerializeField]
     private float AttackRestTime = 0;
     public float AttackRestTimer = 0.67f;
     [SerializeField]
     private bool isAttacking = false;
     private bool canMove = true;
-
     void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -39,9 +40,9 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
    
     void FixedUpdate()
     {
+        AttackRestTime += Time.deltaTime;
         if (!canMove)
             return;
-        AttackRestTime += Time.deltaTime;
         Move();
         Attack();
         Skill1();
@@ -51,28 +52,29 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
 
     public void takeDamage(int enemyATK, string enemyName)
     {
-    //    if (!canMove)
-    //        return;
-    //    int damage= enemyATK - PlayInfoManager.Instance.DEF <= 0?1: enemyATK - PlayInfoManager.Instance.DEF;
+        if (!canMove)
+            return;
+        //int damage = enemyATK - PlayInfoManager.Instance.DEF <= 0 ? 1 : enemyATK - PlayInfoManager.Instance.DEF;
 
-    //    PlayInfoManager.Instance.currentHP -= damage;
-    //    StringBuilder sb = new StringBuilder();
-    //    sb.Append(enemyName).Append("对你造成了").Append(damage.ToString()).Append("点伤害");
+        //PlayInfoManager.Instance.currentHP -= damage;
+        //StringBuilder sb = new StringBuilder();
+        //sb.Append(enemyName).Append("对你造成了").Append(damage.ToString()).Append("点伤害");
 
-    //    EventCenter.Broadcast(EventDefine.ShowMessage, msg);
-    //    if (PlayInfoManager.Instance.currentHP <= 0)
-    //    {
-    //        EventCenter.Broadcast(EventDefine.ShowDeadPanel);
-    //        canMove = false;
-    //        string deadMsg = "你被" + enemyName + "杀死了";
-    //        EventCenter.Broadcast(EventDefine.ShowMessage, deadMsg);
-    //    }
-    //    StartCoroutine("ChangeColor");
+        //EventCenter.Broadcast(EventDefine.ShowMessage, msg);
+        //if (PlayInfoManager.Instance.currentHP <= 0)
+        //{
+        //    EventCenter.Broadcast(EventDefine.ShowDeadPanel);
+        //    canMove = false;
+        //    string deadMsg = "你被" + enemyName + "杀死了";
+        //    EventCenter.Broadcast(EventDefine.ShowMessage, deadMsg);
+        //}
+        StartCoroutine("ChangeColor");
     }
     private IEnumerator ChangeColor()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1, 0.5f, 0.5f, 1f);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
+        yield return new WaitUntil(()=>canMove);//等到无敌时间过了再变回去
         gameObject.GetComponent<SpriteRenderer>().color = new Vector4(1f, 1f, 1f, 1f);
     }
 
@@ -115,7 +117,7 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     }
     private void Attack()//检测普通攻击
     {
-        if (Input.GetKeyDown(KeyCode.J) && AttackRestTime >= AttackRestTimer)//CD好了才能攻击
+        if (Input.GetKeyDown(KeyCode.J) && AttackRestTime >= AttackRestTimer && !isAttacking)//CD好了才能攻击
         {
             AudioManager.Instance.PlayEffect("Attack");
             AttackRestTime = 0;
@@ -146,7 +148,7 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     }
     private void Skill1()//检测技能1
     {
-        if (Input.GetKeyDown(KeyCode.K) && AttackRestTime >= AttackRestTimer)
+        if (Input.GetKeyDown(KeyCode.K) && AttackRestTime >= AttackRestTimer && !isAttacking)
         {
             //if (PlayInfoManager.Instance.currentMP < 3)
             //    return;
@@ -187,7 +189,7 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     }
     private void Skill2()
     {
-       if (Input.GetKeyDown(KeyCode.O) && AttackRestTime >= AttackRestTimer)
+       if (Input.GetKeyDown(KeyCode.O) && AttackRestTime >= AttackRestTimer&&!isAttacking)
         {
             //if (PlayInfoManager.Instance.currentMP < 8)
             //    return;

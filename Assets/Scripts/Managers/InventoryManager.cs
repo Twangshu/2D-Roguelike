@@ -7,14 +7,14 @@ public class InventoryManager : MonoBehaviour {
 
    
     private static InventoryManager _instance;
-    public static InventoryManager Instance { get => _instance; set => _instance = value; }
+    public static InventoryManager Instance { get => _instance; }
 
     private List<Item> itemList = new List<Item>();//初始化list（数组不能这样初始化）
     
 
     private void Start()
     {
-        Instance = this;
+        _instance = this;
         ParseItemJson();
     }
 

@@ -5,8 +5,8 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour {
 
-    public Transform target;
-    public float speed = 200f;
+    public Transform target;//寻路目标
+    public float speed = 200f;//
     public float nextWayPointDistance = 3f;
 
     private  Path path;
@@ -17,14 +17,12 @@ public class EnemyAI : MonoBehaviour {
     private  Rigidbody2D rb;
     private Vector3 initialScale;
     public bool isStop = false;
-    public Vector3 test;
 
 	// Use this for initialization
 	void Start () {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         initialScale = GetComponent<Enemy>().initialScale;
-        test = initialScale;
         InvokeRepeating("SeekPath", 0, .5f);
         target = GameObject.FindGameObjectWithTag(Tags.Player).transform;
 	}
@@ -51,15 +49,8 @@ public class EnemyAI : MonoBehaviour {
         {
             currentWaypoint++;
         }
-
-        if (dir>= 0.01f)
-        {
-            transform.localScale = new Vector3(1 * isInitDirRight * initialScale.x, initialScale.y, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(-1 * isInitDirRight * initialScale.x, initialScale.y, 1);
-        }
+        transform.localScale = dir >= 0.01f? new Vector3(1 * isInitDirRight * initialScale.x, initialScale.y, 1): transform.localScale = new Vector3(-1 * isInitDirRight * initialScale.x, initialScale.y, 1);
+      
     }
     private void OnPathComplete(Path p)
     {

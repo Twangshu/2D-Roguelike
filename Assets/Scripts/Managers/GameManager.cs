@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
     ///单列模式
     /// </summary>
     private static GameManager _instance; //字段
-    public static GameManager Instance { get => _instance; set => _instance = value; } //字段的属性
+    public static GameManager Instance { get => _instance;} //字段的属性
     
 
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
     }
 }

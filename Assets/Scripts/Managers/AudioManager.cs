@@ -16,11 +16,11 @@ public class AudioManager : MonoBehaviour
 
     public Slider volumeSlider;
     public float Volume { get; set; }
-    public static AudioManager Instance { get => _instance; set => _instance = value; }
+    public static AudioManager Instance { get => _instance; }
 
     void Awake()
     {
-        Instance = this;
+        _instance = this;
         foreach (var item in AudioClipArray)
         {
             AudioDic.Add(item.name, item);

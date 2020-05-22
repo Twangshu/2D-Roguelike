@@ -9,13 +9,8 @@ using UnityEngine;
 public  class PlayInfoManager:MonoBehaviour
 {
     private static PlayInfoManager _instance;
-    public static PlayInfoManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
+    public static PlayInfoManager Instance { get => _instance; }
+
     public List<GameObject> equipmentSlots = new List<GameObject>();
    
 
@@ -46,63 +41,66 @@ public  class PlayInfoManager:MonoBehaviour
     public Slider expSlider;
     public float textColor = 0.5f;
     private Color goldColor;
+
+
+
     private void Start()
     {
         _instance = this;
-        goldColor = goldText.color;
-        UpdateGoldAmount();
-        UpdatePlayInfo();
+        //goldColor = goldText.color;
+        //UpdateGoldAmount();
+        //UpdatePlayInfo();
     }
 
     private void Update()
     {
-        EXPText.text = "EXP:"+exp.ToString()+"/"+ (baseExp * Level).ToString();
-        if (exp >= baseExp * Level)
-        {
-            UpLevel();
-        }
-        HPSlider.value = (float)currentHP / maxHP;
-        MPSlider.value = (float)currentMP / maxMP;
-        expSlider.value = (float)exp / (baseExp * Level);
-        if (currentHP > maxHP)
-        {
-            currentHP = maxHP;
-        }
-        HPText.text = "HP:"+currentHP.ToString() + "/" + maxHP.ToString();
-        if (currentMP > maxMP)
-        {
-            currentMP = maxMP;
-        }
-        MPText.text = "MP:"+currentMP.ToString() + "/" + maxMP.ToString();
+        //EXPText.text = "EXP:"+exp.ToString()+"/"+ (baseExp * Level).ToString();
+        //if (exp >= baseExp * Level)
+        //{
+        //    UpLevel();
+        //}
+        //HPSlider.value = (float)currentHP / maxHP;
+        //MPSlider.value = (float)currentMP / maxMP;
+        //expSlider.value = (float)exp / (baseExp * Level);
+        //if (currentHP > maxHP)
+        //{
+        //    currentHP = maxHP;
+        //}
+        //HPText.text = "HP:"+currentHP.ToString() + "/" + maxHP.ToString();
+        //if (currentMP > maxMP)
+        //{
+        //    currentMP = maxMP;
+        //}
+        //MPText.text = "MP:"+currentMP.ToString() + "/" + maxMP.ToString();
     }
     public void UpdatePlayInfo()
     {
-        equipmentHP = 0; equipmentMP = 0; equipmentATK = 0; equipmentDEF = 0;
-        foreach (GameObject equipmentSlot in equipmentSlots)
-        {
-            if (equipmentSlot.transform.childCount > 0)//该装备栏有装备
-            {
-                Equipment equipment = (Equipment)equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>().Item;
-                equipmentATK += equipment.ATK;
-                equipmentDEF += equipment.DEF;
-                equipmentHP += equipment.HP;
-                equipmentMP += equipment.MP;
-            }
+        //equipmentHP = 0; equipmentMP = 0; equipmentATK = 0; equipmentDEF = 0;
+        //foreach (GameObject equipmentSlot in equipmentSlots)
+        //{
+        //    if (equipmentSlot.transform.childCount > 0)//该装备栏有装备
+        //    {
+        //        Equipment equipment = (Equipment)equipmentSlot.transform.GetChild(0).GetComponent<ItemUI>().Item;
+        //        equipmentATK += equipment.ATK;
+        //        equipmentDEF += equipment.DEF;
+        //        equipmentHP += equipment.HP;
+        //        equipmentMP += equipment.MP;
+        //    }
 
-        }
-        maxHP = playerHP + equipmentHP;
-        maxMP = playerMP + equipmentMP;
-        ATK = playerATK + equipmentATK;
-        DEF = playerDEF + equipmentDEF;
+        //}
+        //maxHP = playerHP + equipmentHP;
+        //maxMP = playerMP + equipmentMP;
+        //ATK = playerATK + equipmentATK;
+        //DEF = playerDEF + equipmentDEF;
 
-        if (currentHP > maxHP)
-        {
-            currentHP = maxHP;
-        }
-        HPText.text ="HP:"+ currentHP.ToString() + "/" + maxHP.ToString();
-        MPText.text = "MP:" + currentMP.ToString() + "/" + maxMP.ToString();
-        ATKText.text ="ATK:"+ ATK.ToString();
-        DEFText.text ="DEF:"+ DEF.ToString();
+        //if (currentHP > maxHP)
+        //{
+        //    currentHP = maxHP;
+        //}
+        //HPText.text ="HP:"+ currentHP.ToString() + "/" + maxHP.ToString();
+        //MPText.text = "MP:" + currentMP.ToString() + "/" + maxMP.ToString();
+        //ATKText.text ="ATK:"+ ATK.ToString();
+        //DEFText.text ="DEF:"+ DEF.ToString();
     }
     public void UpdateGoldAmount()
     {
