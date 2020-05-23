@@ -12,4 +12,5 @@
    CloseForgePanel,
     ShowKnapsackPanel,
     HideKnapsackPanel,
+    HideShopPanel,
 }

@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     private Camera uICamera;
     [SerializeField]
     private bool isBagOn = false;//背包是否打开
+    private bool isShopOn = false;
 
     private void Start()
     {
@@ -48,7 +49,13 @@ public class UIManager : MonoBehaviour
             EventDefine eventDefine = isBagOn ? EventDefine.HideKnapsackPanel : EventDefine.ShowKnapsackPanel;
             isBagOn = !isBagOn;
             EventCenter.Broadcast(eventDefine);
-        }    
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            EventDefine eventDefine = isShopOn ? EventDefine.HideShopPanel : EventDefine.ShowShopPanel;
+            isShopOn = !isShopOn;
+            EventCenter.Broadcast(eventDefine);
+        }
     }
 
     private void UpdateToolTip()

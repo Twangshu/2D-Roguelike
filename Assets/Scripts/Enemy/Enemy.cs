@@ -105,7 +105,7 @@ public class Enemy: MonoBehaviour//怪物基类
             maxHP -= (int)(PlayInfoManager.Instance.ATK * (float)type[0]);
             StringBuilder sb = new StringBuilder();
             sb.Append("你对").Append(enemyName).Append("造成了").Append((PlayInfoManager.Instance.ATK * (float)type[0]).ToString()).Append("点伤害");
-            EventCenter.Broadcast(EventDefine.ShowMessage, sb);
+            EventCenter.Broadcast(EventDefine.ShowMessage, sb.ToString()) ;
             if (maxHP <= 0)
             {
                 isDie = true;

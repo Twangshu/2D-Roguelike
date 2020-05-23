@@ -12,6 +12,9 @@ TagManager:
   - EquipmentSlot
   - ShopSlot
   - KnapsackSlot
+  - player
+  - door
+  - ShortcutSlot
   layers:
   - Default
   - TransparentFX

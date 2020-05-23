@@ -54,20 +54,20 @@ public class PlayerAct : MonoBehaviour  //攻击，行走
     {
         if (!canMove)
             return;
-        //int damage = enemyATK - PlayInfoManager.Instance.DEF <= 0 ? 1 : enemyATK - PlayInfoManager.Instance.DEF;
+        int damage = enemyATK - PlayInfoManager.Instance.DEF <= 0 ? 1 : enemyATK - PlayInfoManager.Instance.DEF;
 
-        //PlayInfoManager.Instance.currentHP -= damage;
-        //StringBuilder sb = new StringBuilder();
-        //sb.Append(enemyName).Append("对你造成了").Append(damage.ToString()).Append("点伤害");
+        PlayInfoManager.Instance.currentHP -= damage;
+        StringBuilder sb = new StringBuilder();
+        sb.Append(enemyName).Append("对你造成了").Append(damage.ToString()).Append("点伤害");
 
-        //EventCenter.Broadcast(EventDefine.ShowMessage, msg);
-        //if (PlayInfoManager.Instance.currentHP <= 0)
-        //{
-        //    EventCenter.Broadcast(EventDefine.ShowDeadPanel);
-        //    canMove = false;
-        //    string deadMsg = "你被" + enemyName + "杀死了";
-        //    EventCenter.Broadcast(EventDefine.ShowMessage, deadMsg);
-        //}
+        EventCenter.Broadcast(EventDefine.ShowMessage, sb.ToString());
+        if (PlayInfoManager.Instance.currentHP <= 0)
+        {
+            EventCenter.Broadcast(EventDefine.ShowDeadPanel);
+            canMove = false;
+            string deadMsg = "你被" + enemyName + "杀死了";
+            EventCenter.Broadcast(EventDefine.ShowMessage, deadMsg);
+        }
         StartCoroutine("ChangeColor");
     }
     private IEnumerator ChangeColor()

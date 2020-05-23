@@ -76,7 +76,7 @@ public class ItemUI : MonoBehaviour {
         {
             PlayInfoManager.Instance.currentHP += ((Consumable)Item).HP;
             PlayInfoManager.Instance.currentMP += ((Consumable)Item).MP;
-            PlayInfoManager.Instance.UpdateState();
+            //PlayInfoManager.Instance.UpdateState();
             ReduceAmount();
         }
     }

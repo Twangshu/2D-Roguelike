@@ -11,6 +11,6 @@ public class Tags {
     public static string KnapsackSlot = "KnapsackSlot";
     public static string ShopSlot = "ShopSlot";
     public static string EquipmentSlot = "EquipmentSlot";
-    public static string ShortCutSlot = "ShortCutSlot";
+    public static string ShortcutSlot = "ShortcutSlot";
     public static string outWall = "outwall";
 }

@@ -67,7 +67,7 @@ public class KnapsackSlot : Slot
 
 
         }
-        else if (endTrans.tag == Tags.EquipmentSlot)
+        else if (endTrans.tag == Tags.EquipmentSlot)//从背包栏往装备栏移
         {
 
             if (UIManager.Instance.PickedItem.Item is Equipment && ((Equipment)UIManager.Instance.PickedItem.Item).equipmentType == endTrans.gameObject.GetComponent<EquipmentSlot>().equipmentType)//类型匹配
@@ -167,7 +167,7 @@ public class KnapsackSlot : Slot
             PlayInfoManager.Instance.gold += (soldItem.sellPrice * amount);
             PlayInfoManager.Instance.UpdateGoldAmount();
         }
-        else if (endTrans.tag.CompareTo(Tags.ShortCutSlot) == 0)//从背包栏往快捷栏
+        else if (endTrans.tag.CompareTo(Tags.ShortcutSlot) == 0)//从背包栏往快捷栏
         {
             if (!(UIManager.Instance.PickedItem.Item is Consumable))
             {
